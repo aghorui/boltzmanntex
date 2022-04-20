@@ -1,0 +1,83 @@
+
+body {
+	font-family: Calibri, Noto Sans, Sans;
+	font-size: 1em;
+	background-color: #007557;
+	margin: 0;
+	background: rgb(0,75,40);
+	background: linear-gradient(0deg, rgba(6,119,88,1) 0%, rgba(0,75,40,1) 94%);
+	line-height: 1.8em;
+}
+
+img {
+	width: 100%;
+	height: auto;
+}
+
+li {
+	margin-bottom: 20px;
+}
+
+.foreground {
+	background-color: #F5F5F5;
+	display: flex;
+    flex-direction: column;
+    max-width: 75%;
+    min-height: 100%;
+    margin: 0 auto 0 auto;
+}
+
+.title {
+	background: url("logo.svg");
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.title img {
+	max-width: 100%;
+	height: auto;
+}
+
+.nav {
+	background-color: #DDDDDD;
+	display: inline-block;
+
+}
+
+.nav a {
+	text-decoration: none;
+	color: black;
+	font-weight: bold;
+	padding: 10px 10px 10px 10px;
+	display: inline-block;
+}
+
+.nav a:hover {
+	text-decoration: underline;
+	background-color: #EAEAEA;
+}
+
+.body {
+	flex: 1;
+	margin: 20px;
+	height: 100%;
+}
+
+.footer {
+	background-color: #002711;
+	padding: 5px;
+	font-size: 0.8em;
+	color: white;
+}
+
+@media only screen and (max-width: 850px) {
+
+.foreground {
+    max-width: 100%;
+}
+
+.body {
+	margin: 10px;
+}
+
+}
