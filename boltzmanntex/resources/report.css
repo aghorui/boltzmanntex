@@ -1,0 +1,15 @@
+table, th, tr, td {
+    border: 1px;
+    border-style: solid;
+    border-collapse: collapse;
+}
+
+th {
+    background-color: #CDEEFF;
+}
+
+th, td {
+    padding: 5px 5px 5px 5px;
+    valign: middle;
+    align: center;
+}

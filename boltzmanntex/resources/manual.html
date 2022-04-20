@@ -1,0 +1,154 @@
+<h1>BoltzmannTex User Manual</h1>
+
+<p>
+<b>BoltzmannTex is alpha quality software. While steps have been taken in the
+subprograms to create accurate results, this software, in its current state
+should not be depended on for actual real world use.</b>
+</p>
+
+<p>
+<b>Please use this software at your own risk and not as your primary method of
+computation.</b>
+</p>
+
+<a name="introduction"> <h2>Introduction</h2> </a>
+
+<p>
+BoltzmannTex is a program for performing predefined transformations and
+visualisations on acquired data using simple Graphical User Intefaces. This
+software is mainly meant for well defined techniques that can be rigidly written
+as a program, and do not require regular testing, editing or substantial
+knowledge of programming for usage) for usage (such as in the case of python
+scripts).
+</p>
+
+<p>
+BoltzmannTex aims to be modular enough to be easily extendable for more
+sub-programs.
+</p>
+
+<a name="gettingstarted"> <h2>Getting Started</h2> </a>
+
+<p>
+BoltzmannTex, when first launched, displays a welcome screen with a list of
+options. these options are called <b>Subprograms</b> and allow you to perform
+a certain computation.
+</p>
+
+<a name="graphs"> <h2>Using Interactive Graphs Within the Program</h2> </a>
+
+<p>
+The interactive graphs presented to the user by the program can be zoomed into,
+panned and scaled based on individual axes using the mouse. The steps to
+perform each of these operations are as follows:
+
+<ul>
+<li> <b>To pan or move the graph:</b> Click and drag the left mouse button.</li>
+<li> <b>To zoom in and out of the graph:</b> Scroll up on down of the graph
+     while the mouse is above the graph.</li>
+<li> <b>To scale an individual axis:</b> Put the mouse around the label of one
+     of the axes, and scroll up and down.</li>
+</ul>
+</p>
+
+<a name="subprograms"> <h2>Available Subprograms</h2> </a>
+
+<p>
+BoltzmannTex currently has 2 functional Subprograms available:
+
+<ol>
+<li> Optical Emmision Spectroscopy Temperature Calculation</li>
+<li> Simple Graph Plotting </li>
+</ol>
+</p>
+
+<a name="oes"> <h2>Optical Emmision Spectroscopy Temperature Calculation</h2> </a>
+
+<p>
+This subprogram allows the user to perform temperature calculation of thermal
+plasma using optical emission spectroscopy based on the spectral signatures
+of the material being examined.
+</p>
+
+<a name="oes:materialdata"> <h3>Material Data Input Screen</h3> </a>
+
+<p>
+This screen allows the user to input the material data of the spectrum that is
+being analysed. Four Parameters are required for each emmision line in the
+spectrum: The Wavelength, the Transition probability, the Upper Level Energy and
+the Degeneracy, and are input into the table area available on the screen. The
+number of rows in the table is the number of emmision lines that will be
+considered by the program. When this list is populated by the user, the
+program is allowed to move to the next step.
+</p>
+
+<a name="oes:materialdataimport"> <h3>Providing Material Data Input as File</h3> </a>
+
+<p>
+Material data input can also be provided by importing a delimiter-separated table
+of values into the program by clicking the "Import" button visible. To prepare
+this table, one can simply use a text editor to enter each value, separate them
+by space for each column, and by a new line ("enter" key) for each row.
+</p>
+
+<p>
+A second method would be to use a word processor or a spreadsheet program
+such as Microsoft Office or Libreoffice. One can prepare a graphical table of
+each value, then copy the entire table, and then paste it into a text editor.
+The file then can be opened by the program.
+</p>
+
+<a name="oes:spectraldata"> <h3>Spectral Data Input Screen</h3> </a>
+
+<p>
+This screen allows the user to input the data of the spectral readings of the
+observation, as well as input the defined emission line ranges (or peaks) within
+the readings. When the correct number of peak ranges are supplied to the
+program, the program is allowed to proceed to the next step.
+</p>
+
+<a name="oes:peakareacomputation"> <h3>Peak Area Computation Screen</h3> </a>
+
+<p>
+This screen shows all the areas of the individual peaks defined.
+</p>
+
+<a name="oes:regressionanalysis"> <h3>Regression Analysis Screen</h3> </a>
+
+<p>
+This screen shows each of the observation points taken into consideration in the
+regression analysis phase or the linear fitting phase of the calculation.
+The user is shown a graph with all the points as well as the fitted line. On the
+right the numerical values of each point are shown in the order of the peaks.
+The user is also given an option to discard any of the peaks from the
+final calculation of the temperature by clicking a checkbox next to each entry.
+</p>
+
+<p>
+The result is immediately updated on clicking one of the entries.
+</p>
+
+<a name="oes:resultanderror"> <h3>Result Screen</h3> </a>
+
+<p>
+This screen shows the final resultant temperature, the correlation coefficient
+of the linear regression data, and the coefficient of determination
+(R<sup>2</sup>) value of the fitting.
+</p>
+
+<p>
+A button for generating a report from the available data and another button is
+available here for saving the images of the plots from the program.
+</p>
+
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
