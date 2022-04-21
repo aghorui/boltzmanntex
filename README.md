@@ -9,7 +9,7 @@ should not be depended on for actual real world use.**
 computation.**
 
 BoltzmannTex
-===========
+============
 
 BoltzmannTex is a program for performing predefined transformations and
 visualisations on acquired data using simple Graphical User Intefaces. This
@@ -34,10 +34,10 @@ an archive from Github's interface, or run the following `git` command in a
 terminal or command prompt:
 
 ```
-git clone https://github.com/aghorui/BoltzmannTex.git
+git clone https://github.com/aghorui/boltzmanntex.git
 ```
 
-This will create a directory named `BoltzmannTex` with all the project source
+This will create a directory named `boltzmanntex` with all the project source
 files.
 
 
@@ -58,7 +58,7 @@ project directory. Then enter the following commands:
 ```
 mkdir build
 cd build
-qmake ../BoltzmannTex
+qmake ../boltzmanntex
 ```
 
 This will generate the necessary build files, and isolate the end product and
@@ -74,19 +74,25 @@ the newly made `build` directory in the project directory.
 
 ### GUI Method
 
-Open `BoltzmannTex/BoltzmannTex.pro` within the project directory with QT Creator,
+Open `boltzmanntex/boltzmanntex.pro` within the project directory with QT Creator,
 then click on the build button. This will compile the application and put it in
 a directory prefixed by `build`, within the project directory assuming a default
 QTCreator configuration. If you want to change this directory, you can do so
 via the "projects" tab in QTCreator.
 
-## Currently Implemented Programs
+## Currently Implemented Subprograms
 
-### Graph Plot
+The program currently implements 2 modules (called "subprograms"):
 
-Simple plotting example. Can be used as a template to write other programs.
-(To be completed)
+*   **OES Temperature Calculation:**
+    
+    Allows the user to calculate the temperature of thermal plasma using readings
+    from Optical Emission Spectroscopy of the thermal plasma.
 
+*   **Simple Graph Plotting:**
+
+    Implements a simple, rudimentary interface for the creation of plots of 2
+    values against eachother.
 
 ## License
 
