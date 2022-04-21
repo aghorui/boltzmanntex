@@ -13,3 +13,7 @@ th, td {
     valign: middle;
     align: center;
 }
+
+.section {
+    page-break-before: always
+}

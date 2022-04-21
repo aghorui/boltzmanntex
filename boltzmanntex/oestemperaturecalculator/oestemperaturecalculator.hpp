@@ -65,7 +65,6 @@ public:
     QCPGraph *regressionPlot;
     QCPGraph *fitLinePlot;
 
-    QVector<QCPItemStraightLine *> lines;
     QVector<QCPItemText *> regressionLineLabels;
     bool editRange = false;
     bool rangeStarted = false;
@@ -139,9 +138,13 @@ private slots:
 
     void on_peakLineHideToggle_toggled(bool checked);
 
-    void on_graphHelpButton_2_clicked();
-
     void on_dataImportHelpButton_clicked();
+
+    void on_graphHelpButton2_clicked();
+
+    void on_spectralGraphResetPositionButton_clicked();
+
+    void on_regressionResetPositionButton_clicked();
 
 private:
     Ui::OESTemperatureCalculator *ui;

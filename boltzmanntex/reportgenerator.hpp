@@ -102,7 +102,7 @@ public:
             doc << "</tr>";
         }
 
-        doc << "</table><br />";
+        doc << "</table><br /><br /><br />";
     }
 
     void insertTableFromDataset(Dataset &d)
@@ -124,7 +124,20 @@ public:
             doc << "</tr>";
         }
 
-        doc << "</table><br />";
+        doc << "</table><br /><br /><br />";
+    }
+
+    void insertPageHeader(QString title)
+    {
+        doc << "<p style='color: grey;'><i>";
+        doc << "BoltzmannTex Version " << BOLTZMANNTEX_VERSON
+            << " (" << BOLTZMANNTEX_BUILD_NUMBER
+            << ", " << BOLTZMANNTEX_BUILD_COMMIT_DATE
+            << ")";
+        doc << "</i></p>";
+
+        insertHeading(2, title);
+        insertHorizontalRule();
     }
 
     void insertReportHeader(QString title)

@@ -41,6 +41,7 @@ void CSVImporter::setDatasetInputFields(QStringList inputList)
         entryList.push_back(new ColumnSelectEntry());
         entryList.back()->setName(inputList[i]);
         entryList.back()->setModel(model);
+        entryList.back()->setCurrentIndex(i);
         ui->assignmentList->layout()->addWidget(entryList.back());
     }
 }
@@ -88,10 +89,14 @@ void CSVImporter::on_loadButton_clicked()
         ui->assignmentList->setEnabled(false);
     }
     ui->fileStatus->setText(QString("Loaded ") + QString::number(d.numColumns()) +
-                            " columns, " + QString::number(d.numRows()) + "rows.");
+                            " columns, " + QString::number(d.numRows()) + " rows.");
     ui->assignmentList->setEnabled(true);
     model.setStringList(d.getHeaderNames());
     tableModel.setDataset(&d);
+
+    for (int i = 0; i < d.getHeaderNames().size(); i++) {
+        entryList[i]->setCurrentIndex(i);
+    }
 }
 
 void CSVImporter::on_buttonBox_accepted()
@@ -195,6 +200,10 @@ void CSVImporter::on_refreshButton_clicked()
                             " columns, " + QString::number(d.numRows()) + " rows.");
     model.setStringList(d.getHeaderNames());
     tableModel.setDataset(&d);
+
+    for (int i = 0; i < d.getHeaderNames().size(); i++) {
+        entryList[i]->setCurrentIndex(i);
+    }
 }
 
 void CSVImporter::on_dataSeperatorSelect_currentIndexChanged(int index)

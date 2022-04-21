@@ -54,6 +54,11 @@ void ColumnSelectEntry::setModel(QStringListModel &model)
     ui->options->setModel(&model);
 }
 
+void ColumnSelectEntry::setCurrentIndex(int index)
+{
+    ui->options->setCurrentIndex(index);
+}
+
 ColumnSelectEntry::~ColumnSelectEntry()
 {
     delete ui;

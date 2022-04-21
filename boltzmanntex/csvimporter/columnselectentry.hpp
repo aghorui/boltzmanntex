@@ -39,6 +39,7 @@ public:
 
     void setOptions(QStringList &options);
     void setModel(QStringListModel &model);
+    void setCurrentIndex(int index);
     int getSelectedOption();
     ~ColumnSelectEntry();
 

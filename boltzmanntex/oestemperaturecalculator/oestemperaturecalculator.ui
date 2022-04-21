@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>749</width>
-    <height>494</height>
+    <width>877</width>
+    <height>557</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -40,11 +40,11 @@
         <bool>true</bool>
        </property>
        <property name="currentIndex">
-        <number>0</number>
+        <number>3</number>
        </property>
        <widget class="QWidget" name="spectralDataSpecificationScreen">
         <attribute name="title">
-         <string>Spectral Data Specification</string>
+         <string>Spectral Constants</string>
         </attribute>
         <layout class="QVBoxLayout" name="verticalLayout_3">
          <item>
@@ -58,7 +58,7 @@
               </font>
              </property>
              <property name="text">
-              <string>Material Spectral Data</string>
+              <string>Spectral Constant Data</string>
              </property>
             </widget>
            </item>
@@ -225,7 +225,7 @@
            <item>
             <widget class="QPushButton" name="loadGraphButton">
              <property name="text">
-              <string>Load Graph</string>
+              <string>Load Spectra</string>
              </property>
              <property name="icon">
               <iconset resource="../resources/resource.qrc">
@@ -283,6 +283,13 @@
                   </size>
                  </property>
                 </spacer>
+               </item>
+               <item>
+                <widget class="QPushButton" name="spectralGraphResetPositionButton">
+                 <property name="text">
+                  <string>Reset Position</string>
+                 </property>
+                </widget>
                </item>
                <item>
                 <widget class="QCheckBox" name="peakLineHideToggle">
@@ -362,7 +369,7 @@
            <item>
             <widget class="QPushButton" name="importPeakListButton">
              <property name="text">
-              <string>Import Peak List</string>
+              <string>Import Peak Start-End List</string>
              </property>
             </widget>
            </item>
@@ -549,6 +556,13 @@
                   </size>
                  </property>
                 </spacer>
+               </item>
+               <item>
+                <widget class="QPushButton" name="regressionResetPositionButton">
+                 <property name="text">
+                  <string>Reset Position</string>
+                 </property>
+                </widget>
                </item>
               </layout>
              </item>

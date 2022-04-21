@@ -50,6 +50,7 @@ OESTemperatureCalculator::OESTemperatureCalculator(QWidget *parent) :
     ui->setupUi(this);
     ui->plotter->xAxis->ticker()->setTickCount(10);
     spectralPlot = ui->plotter->addGraph(); // Spectral Plot and lines
+    peakLinePlot = ui->plotter->addGraph(); // Spectral Plot and lines
     regressionPlot = ui->regressionGraph->addGraph(); // Points
     fitLinePlot = ui->regressionGraph->addGraph(); // Fit line
 
@@ -483,9 +484,7 @@ void OESTemperatureCalculator::setPeakLinesVisible(bool visible)
     if (visible == peakLinesVisible)
         return;
 
-    for (int i = 0; i < lines.size(); i++) {
-        lines[i]->setVisible(visible);
-    }
+    peakLinePlot->setVisible(visible);
 
     peakLinesVisible = visible;
     ui->plotter->replot();
@@ -495,31 +494,26 @@ void OESTemperatureCalculator::updatePeakListDependents()
 {
     bool flag = (materialData.numRows() == peakList.numRows()) && spectrometerDataLoaded;
 
-    for (int i = 0; i < lines.size(); i++) {
-        ui->plotter->removeItem(lines[i]);
-    }
-
-    lines.clear();
-
-    for (int i = 0; i < peakList.numRows(); i++) {
-        QCPItemStraightLine *newLine = new QCPItemStraightLine(ui->plotter);
-        newLine->point1->setCoords(peakList[0][i], 0.0);
-        newLine->point2->setCoords(peakList[0][i], 1.0);
-        newLine->setPen(redPen);
-
-        QCPItemStraightLine *newLine2 = new QCPItemStraightLine(ui->plotter);
-        newLine2->point1->setCoords(peakList[1][i], 0.0);
-        newLine2->point2->setCoords(peakList[1][i], 1.0);
-        newLine2->setPen(redPen);
-        lines.push_back(newLine);
-        lines.push_back(newLine2);
-    }
 
     if (flag) {
         if (performCalculation() < 0) {
             return;
         }
     }
+
+    QPainterPath k;
+    k.lineTo(0, -20);
+    peakLinePlot->setLineStyle(QCPGraph::lsNone);
+    peakLinePlot->setScatterStyle(QCPScatterStyle(k, redPen, Qt::NoBrush, 10.0));
+    QVector<double> values;
+    for (int i = 0; i < peakList.numRows(); i++) {
+        values.push_back(peakList[0][i]);
+        values.push_back(peakList[1][i]);
+    }
+
+    QVector<double> yaxis(values.size(), spectrometerData[1][0]);
+
+    peakLinePlot->setData(values, yaxis);
 
     ui->peakAreaComputationScreen->setEnabled(flag);
     ui->resultScreen->setEnabled(flag);
@@ -664,9 +658,12 @@ void OESTemperatureCalculator::on_generateReportButton_clicked()
     ReportGenerator r(doc, printer);
 
     r.insertReportHeader("OES Thermal Plasma Temperature Calculation");
-    r.insertHeading(2, "Material Data");
+    r.insertHeading(1, "Material Data");
     r.insertTableFromDataset(materialData);
-    r.insertHeading(2, "Peaks");
+
+    r.doc << "<p class=\"section\">";
+    r.insertPageHeader("OES Thermal Plasma Temperature Calculation");
+    r.insertHeading(1, "Peaks");
     r.insertTableFromDataset(peakList);
 
     setPeakLinesVisible(false);
@@ -677,17 +674,25 @@ void OESTemperatureCalculator::on_generateReportButton_clicked()
     (void) r.insertPixmap(spectralDataPlot, "spectralDataPlot");
     setPeakLinesVisible(peakLinesVisible);
     cursorLine->setVisible(true);
+    r.doc << "</p>";
 
-    r.insertHeading(2, "Peak Area Calculation");
+    r.doc << "<p class=\"section\">";
+    r.insertPageHeader("OES Thermal Plasma Temperature Calculation");
+    r.insertHeading(1, "Peak Area Calculation");
     r.insertTableFromWidget(*ui->areaComputationTable);
+    r.doc << "</p>";
 
-    r.insertHeading(2, "Regression Calculation");
+    r.doc << "<p class=\"section\">";
+    r.insertPageHeader("OES Thermal Plasma Temperature Calculation");
+    r.insertHeading(1, "Regression Calculation");
     r.insertTableFromWidget(*ui->regressionPointTable, true);
     QPixmap regressionPlot = ui->regressionGraph->toPixmap(printer.pageRect(QPrinter::DevicePixel).width(), 500);
     (void) r.insertPixmap(regressionPlot, "regressionPlot");
 
     r.doc << "(Discarded points are marked in red)";
-    r.insertHeading(2, "Final Temperature");
+    r.doc << "</p>";
+
+    r.insertHeading(1, "Final Temperature");
     r.doc << "<b>Final Calculated Temperature:</b> "
           << regressionResult.temperature
           << " K <br />";
@@ -697,6 +702,15 @@ void OESTemperatureCalculator::on_generateReportButton_clicked()
     r.doc << "<b>Coefficient of Determination (R<sup>2</sup>):</b> "
           << ui->determinationCoefficient->text()
           << "<br />";
+
+    QVector<QTextFormat> formats = doc.allFormats();
+
+    for (int i = 0; i < formats.size(); i++) {
+        if (formats[i].isTableFormat()) {
+            formats[i].setProperty(QTextFormat::PageBreakPolicy,
+                                   QTextFormat::PageBreak_AlwaysBefore);
+        }
+    }
 
     doc.setHtml(r.docData);
     doc.setPageSize(printer.pageRect().size());
@@ -768,12 +782,26 @@ void OESTemperatureCalculator::on_peakLineHideToggle_toggled(bool checked)
     setPeakLinesVisible(checked);
 }
 
-void OESTemperatureCalculator::on_graphHelpButton_2_clicked()
+void OESTemperatureCalculator::on_dataImportHelpButton_clicked()
+{
+    emit manualRequest("oes:materialdataimport");
+}
+
+void OESTemperatureCalculator::on_graphHelpButton2_clicked()
 {
     emit manualRequest("graphs");
 }
 
-void OESTemperatureCalculator::on_dataImportHelpButton_clicked()
+void OESTemperatureCalculator::on_spectralGraphResetPositionButton_clicked()
 {
-    emit manualRequest("oes:materialdataimport");
+    ui->plotter->rescaleAxes();
+    ui->plotter->replot();
+}
+
+void OESTemperatureCalculator::on_regressionResetPositionButton_clicked()
+{
+    ui->regressionGraph->rescaleAxes();
+    ui->regressionGraph->xAxis->scaleRange(2);
+    ui->regressionGraph->yAxis->scaleRange(2);
+    ui->regressionGraph->replot();
 }

@@ -156,7 +156,7 @@ void MainWindow::on_actionOpen_Project_triggered()
         }
     }
 
-    QString fileName = QFileDialog::getOpenFileName(this, "Export PDF", "", "*.boltzmanntex");
+    QString fileName = QFileDialog::getOpenFileName(this, "Open Project", "", "*.boltzmanntex");
 
     if (fileName.isEmpty()) {
         return;
