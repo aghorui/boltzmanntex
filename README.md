@@ -15,8 +15,7 @@ BoltzmannTex is a program for performing predefined transformations and
 visualisations on acquired data using simple Graphical User Intefaces. This
 software is mainly meant for well defined techniques that can be rigidly written
 as a program, and do not require regular testing, editing or substantial
-knowledge of programming for usage) for usage (such as in the case of python
-scripts).
+knowledge of programming for usage (such as in the case of python scripts).
 
 BoltzmannTex aims to be modular enough to be easily extendable for more
 sub-programs.
