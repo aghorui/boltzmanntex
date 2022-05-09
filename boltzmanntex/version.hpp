@@ -25,6 +25,6 @@
 #define BOLTZMANNTEX_ORGANIZATION_NAME "BoltzmannTex"
 #define BOLTZMANNTEX_NAME "BoltzmannTex"
 #define BOLTZMANNTEX_DOMAIN "aghorui.github.io"
-#define BOLTZMANNTEX_VERSON "0.4.1"
+#define BOLTZMANNTEX_VERSON "0.4.2"
 
 #endif // VERSION_HPP
